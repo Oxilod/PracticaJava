@@ -1,30 +1,31 @@
 package practica4;
 
 
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * Created by ioangiurgiu on 09/09/16.
  */
-public class Subastas {
+public class Subastas{
     private String nombreProducto;
     private Usuario propietario;
     private boolean abierta = false;
     private boolean pujaAceptada = false;
     private boolean ejecutada = false;
     private LinkedList pujas = new LinkedList();
-    private LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
+    private LinkedList<Usuario> usuarios = new LinkedList<>();
+    // Falta lista de subastas para cada usuario.
 
     public Subastas(String nombreProducto, Usuario propietario){
         abierta = true;
         this.nombreProducto = nombreProducto;
         this.propietario = propietario;
         pujas.add(0);
-        usuarios.add(null);
+        usuarios.add(propietario);
     }
 
     public void pujar(Usuario usuario, int cantidadPuja){
-        if (abierta = true){
+        if (abierta){
             if (usuario.getCredito() >= cantidadPuja){
                 if (propietario != usuario){
                     if (cantidadPuja > ((int)pujas.getLast())){
@@ -52,14 +53,13 @@ public class Subastas {
         }
     }
 
-    public boolean ejecutarSubasta(){
+    public void ejecutarSubasta(){
         if (pujas != null){
             abierta = false;
             usuarios.getLast().decrementarSaldo(((int)pujas.getLast()));
             propietario.incrementarSaldo(((int)pujas.getLast()));
             ejecutada = true;
         }
-        return ejecutada;
     }
 
     public String getNombreProducto() {

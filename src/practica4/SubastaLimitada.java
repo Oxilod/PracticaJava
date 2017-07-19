@@ -1,18 +1,15 @@
 package practica4;
 
-/**
- * Created by ioangiurgiu on 13/09/16.
- */
 public class SubastaLimitada extends Subastas {
 
     private int limiteSubasta;
     private int counter;
 
-    public SubastaLimitada(String nombreProducto, Usuario propietario, int limiteSubasta) {
+    SubastaLimitada(String nombreProducto, Usuario propietario, int limiteSubasta) {
         super(nombreProducto, propietario);
         setNombreProducto(nombreProducto);
         setPropietario(propietario);
-        this.limiteSubasta = limiteSubasta;
+        setLimiteSubasta(limiteSubasta);
     }
 
     public void pujar(Usuario usuario, int cantdadPuja){
@@ -21,5 +18,15 @@ public class SubastaLimitada extends Subastas {
         }else if (getPujasSize() == limiteSubasta){
             ejecutarSubasta();
         }
+    }
+    void pujasPendientes(){
+        if (limiteSubasta <=1){
+            System.out.println("Subasta ejecutada");
+        }else {
+            System.out.println("Subastas pendientes: " + (limiteSubasta - (getPujasSize() - 1)));
+        }
+    }
+    void setLimiteSubasta(int limiteSubasta){
+        this.limiteSubasta = limiteSubasta;
     }
 }

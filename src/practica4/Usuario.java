@@ -1,16 +1,15 @@
 package practica4;
 
-/**
- * Created by ioangiurgiu on 09/09/16.
- */
-public class Usuario {
+
+public class Usuario{
     private final String nombre;
     private int credito;
+    // Falta lista de pujas de cada usuario.
 
     public Usuario(String nombre){
         this.nombre = nombre;
     }
-    public Usuario(String nombre, int credito){
+    Usuario(String nombre, int credito){
         this.nombre  = nombre;
         this.credito = getCredito() + credito;
     }
@@ -24,6 +23,7 @@ public class Usuario {
         }else
             System.out.println("Saldo insuficiente");
     }
+
     public int getCredito(){
         return credito;
     }
